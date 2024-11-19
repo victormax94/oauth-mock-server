@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth-mock-server
+  labels:
+    app: oauth-mock-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oauth-mock-server
+  template:
+    metadata:
+      labels:
+        app: oauth-mock-server
+    spec:
+      containers:
+      - name: oauth-mock-server
+        image: oauth-mock-server:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
